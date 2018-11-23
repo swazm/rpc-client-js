@@ -1,11 +1,19 @@
-let fetch = require("fetch");
+if (!fetch) {
+	var fetch = require("node-fetch");
+}
 
 let request = function () {};
 
 request.prototype.call = async function (payload) {
+	let body = {
+		method: payload.method,
+		input: payload.input,
+		id: payload.id,
+		jsonrpc: payload.jsonrpc
+	}
 	return fetch(payload.url, {
 		method: "POST",
-		body: JSON.stringify(payload.data),
+		body: JSON.stringify(body),
 		headers: {
 			"Content-Type": "application/json",
 		},

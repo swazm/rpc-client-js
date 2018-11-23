@@ -11,7 +11,7 @@ Notification.prototype.SaveToken = function (paramsObject) {
 		jsonrpc: "2.0",
 		id: 1,
 		method: "RED.NotificationSaveToken",
-		params: paramsObject
+		input: paramsObject
 	};
 	return request.call(payload)
 };
