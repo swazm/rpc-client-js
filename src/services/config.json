@@ -1,5 +1,8 @@
 {
   "services": {
+    "Info": [
+      "Version"
+    ],
     "Account": [
       "GetInfo"
     ],

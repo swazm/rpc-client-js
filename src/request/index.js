@@ -1,3 +1,5 @@
+let fetch = require("fetch");
+
 let request = function () {};
 
 request.prototype.call = async function (payload) {
