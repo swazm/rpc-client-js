@@ -1,0 +1,11 @@
+{
+  "services": {
+    "Account": [
+      "GetInfo"
+    ],
+    "Notification": [
+      "Send",
+      "SaveToken"
+    ]
+  }
+}
