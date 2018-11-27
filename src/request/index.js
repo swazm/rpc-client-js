@@ -7,6 +7,8 @@ request.prototype.fetch = function (url) {
 		return response.json();
 	}).then(function (json) {
 		return json
+	}).catch((err) => {
+		return err;
 	});
 };
 
@@ -25,7 +27,13 @@ request.prototype.call = async function (payload) {
 			"Content-Type": "application/json",
 		},
 		credentials: "same-origin"
-	});
+	}.then((res) => {
+		return res.json()
+	})).then((json) => {
+		return json;
+	}).catch((err) => {
+		return err;
+	})
 
 };
 
