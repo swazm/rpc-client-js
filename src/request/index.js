@@ -1,7 +1,3 @@
-if (!fetch) {
-	var fetch = require("node-fetch");
-}
-
 let request = function () {
 };
 

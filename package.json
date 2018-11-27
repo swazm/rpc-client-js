@@ -4,7 +4,5 @@
   "main": "index.js",
   "description": "RPC Client only supports browsers/react-native. Node support planned for the future.",
   "license": "MIT",
-  "dependencies": {
-    "node-fetch": "^2.3.0"
-  }
+  "dependencies": {}
 }
