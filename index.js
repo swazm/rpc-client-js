@@ -1,11 +1,11 @@
 let Info = require("./src/services/info");
-let Notification = require("./src/services/notification");
+let PushNotification = require("./src/services/pushnotification");
 
 let Init = function (url) {
 	this.url = url;
 	return {
 		info: new Info(this),
-		notification: new Notification(this),
+		pushNotification: new PushNotification(this),
 	};
 };
 module.exports = Init;

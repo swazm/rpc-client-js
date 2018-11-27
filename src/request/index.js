@@ -1,15 +1,11 @@
-if (!fetch) {
-	var fetch = require("node-fetch");
-}
-
 let request = function () {};
 
 request.prototype.call = async function (payload) {
 	let body = {
+		service: payload.service,
 		method: payload.method,
-		input: payload.input,
+		data: payload.data,
 		id: payload.id,
-		jsonrpc: payload.jsonrpc
 	}
 	return fetch(payload.url, {
 		method: "POST",
@@ -21,16 +17,4 @@ request.prototype.call = async function (payload) {
 	});
 
 };
-
-request.prototype.customCall = async function (url, method, data, headers) {
-	return fetch(url, {
-		method: method,
-		body: data,
-		headers: {
-			...headers,
-		},
-		credentials: "same-origin"
-	});
-};
-
 module.exports = new request;

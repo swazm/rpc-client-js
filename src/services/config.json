@@ -1,14 +1,17 @@
 {
   "services": {
-    "Info": [
-      "Version"
-    ],
-    "Account": [
-      "GetInfo"
-    ],
-    "Notification": [
-      "Send",
-      "SaveToken"
-    ]
+    "version": {
+      "name": "Version",
+      "methods": {
+        "info": "Info"
+      }
+    },
+    "pushNotification": {
+      "name": "PushNotifications",
+      "methods": {
+        "send": "Send",
+        "saveToken": "SaveToken"
+      }
+    }
   }
 }

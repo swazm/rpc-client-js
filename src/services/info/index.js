@@ -1,6 +1,8 @@
 let request = require('../../request');
 let config = require('../config');
 
+let VersionService = config.services.version;
+
 let Info = function (base) {
 	this.url = base.url;
 };
@@ -8,10 +10,10 @@ let Info = function (base) {
 Info.prototype.Version = function () {
 	let payload = {
 		url: this.url,
-		jsonrpc: "2.0",
 		id: 1,
-		method: "Version",
-		input: {}
+		method: VersionService.methods.info,
+		service: VersionService.name,
+		data: null
 	};
 	return request.call(payload)
 };
