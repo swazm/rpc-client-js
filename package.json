@@ -1,8 +1,21 @@
 {
-  "name": "red-rpc-client-js",
+  "name": "@swazm/rpc-client-js",
   "version": "0.1.0",
   "main": "index.js",
   "description": "RPC Client only supports browsers/react-native. Node support planned for the future.",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swazm/rpc-client-js.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/swazm/rpc-client-js/issues"
+  },
+  "homepage": "https://github.com/swazm/rpc-client-js#readme"
 }
