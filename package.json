@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/swazm/rpc-client-js.git"
   },
-  "author": "",
+  "author": "@swazm",
   "bugs": {
     "url": "https://github.com/swazm/rpc-client-js/issues"
   },
