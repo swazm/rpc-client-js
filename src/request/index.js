@@ -27,9 +27,9 @@ request.prototype.call = async function (payload) {
 			"Content-Type": "application/json",
 		},
 		credentials: "same-origin"
-	}.then((res) => {
+	}).then((res) => {
 		return res.json()
-	})).then((json) => {
+	}).then((json) => {
 		return json;
 	}).catch((err) => {
 		return err;
