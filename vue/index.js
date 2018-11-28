@@ -7,3 +7,5 @@ RPCClient.install = function (Vue, options) {
 		return client;
 	}
 };
+
+module.exports = RPCClient;
