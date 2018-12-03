@@ -12,7 +12,7 @@ request.prototype.fetch = function (url) {
 	});
 };
 
-request.prototype.call = async function (payload) {
+request.prototype.call = async function (payload, token) {
 	payload.data = payload.data || null;
 	let body = {
 		service: payload.service,
@@ -20,12 +20,19 @@ request.prototype.call = async function (payload) {
 		data: payload.data,
 		id: payload.id,
 	};
+
+	let headers = {
+		"Content-Type": "application/json",
+	};
+
+	if (token) {
+		headers["Authorization"] = "Bearer " + token;
+	}
+
 	return fetch(payload.url, {
 		method: "POST",
 		body: JSON.stringify(body),
-		headers: {
-			"Content-Type": "application/json",
-		},
+		headers: headers,
 		credentials: "same-origin"
 	}).then((res) => {
 		return res.json()

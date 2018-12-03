@@ -1,7 +1,8 @@
 let request = require("./src/request");
 
-let Init = async function (url) {
+let Init = async function (url, token) {
 	this.url = url + "/rpc";
+	this.token = token;
 	let self = this;
 
 	this.services = await request.fetch(this.url);
@@ -28,12 +29,20 @@ let Init = async function (url) {
 					service: this.name,
 					data: paramsObject
 				};
-				return request.call(payload)
+				return request.call(payload, self.token)
 			}
 		});
 
 		client[service.Name] = Service;
 	});
+
+	client.setToken = function(token) {
+		self.token = token;
+	};
+
+	client.getToken = function() {
+		return self.token;
+	};
 
 	return client;
 };
