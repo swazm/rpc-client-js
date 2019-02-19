@@ -12,7 +12,7 @@ request.prototype.fetch = function (url) {
 	});
 };
 
-request.prototype.call = async function (payload, token) {
+request.prototype.call = async function (payload, token, clientInstance) {
 	payload.data = payload.data || null;
 	let body = {
 		service: payload.service,
@@ -37,6 +37,9 @@ request.prototype.call = async function (payload, token) {
 	}).then((res) => {
 		return res.json()
 	}).then((json) => {
+		if (json.data && json.data.error_code === "401") {
+			clientInstance.setToken(json.data.validation_token)
+		}
 		return json;
 	}).catch((err) => {
 		return err;

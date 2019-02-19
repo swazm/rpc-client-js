@@ -1,56 +1,15 @@
 let Client = require('./index');
 
 (async () => {
-	let client = await Client("https://red-rpc.swazm.com");
+	let client = await Client("http://192.168.1.229:1323");
 
-	client.Version.Info().then((res) => {
-		res.json().then((response) => {
-			console.log(response);
-		}).catch((err) => {
-			console.log(err);
-		})
-	}).catch((err) => {
-		console.log(err.message);
-	});
+	client.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozMCwic2NvcGUiOjIsImFjY2Vzc19zaWduYXR1cmUiOnsic2lnbmF0dXJlIjoiMTJiZDU4M2RkMjViODY4ZTY0MjNkOGYwNGNjMTlmZDE3MTg1ZjdhYjU2Y2I3OTc1MGUxZjU4ZDQ1NDE2MzJlMiIsImV4cGlyZXMiOiIyMDE5LTAyLTE4VDE1OjE1OjQ3LjM3NDY3MiswMjowMCJ9LCJleHAiOjE1NTgyNzE2ODcsImlzcyI6InJwYyJ9.fin7ofr3ohRc6wxHOPnJbQJb48B_l40lL-UiezA-uB0");
+
+	try {
+		let response = await client.User.GetCurrentUser();
+		console.log(response);
+	} catch(e) {
+		console.log(e);
+	}
 
 })();
-
-/*
-
-client.version.info().then((res) => {
-		res.json().then((response) => {
-			console.log(response);
-		}).catch((err) => {
-			console.log(err);
-		})
-	}).catch((err) => {
-		console.log(err.message);
-	});
-
-client.pushNotification.saveToken({"token": "ExponentPushToken[svlnpDGQnQvsZBQmDtn5dF]"}).then((res) => {
-	res.json().then((response) => {
-		console.log(response);
-	}).catch((err) => {
-		console.log(err);
-	})
-}).catch((err) => {
-	console.log(err.message);
-});
-
-client.pushNotification.send({
-	"token": "ExponentPushToken[svlnpDGQnQvsZBQmDtn5dF]",
-	"body": "This is a test notification",
-	"data":{"someKey":"someInfo"},
-	"sound":"default",
-	"title":"Test Notification",
-	"priority":"default"
-}).then((res) => {
-	res.json().then((response) => {
-		console.log(response);
-	}).catch((err) => {
-		console.log(err);
-	})
-}).catch((err) => {
-	console.log(err.message);
-});
-*/

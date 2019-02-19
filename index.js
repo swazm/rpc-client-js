@@ -29,7 +29,7 @@ let Init = async function (url, token) {
 					service: this.name,
 					data: paramsObject
 				};
-				return request.call(payload, self.token)
+				return request.call(payload, self.token, client)
 			}
 		});
 
@@ -46,4 +46,5 @@ let Init = async function (url, token) {
 
 	return client;
 };
+
 module.exports = Init;
