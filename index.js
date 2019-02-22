@@ -3,6 +3,8 @@ let request = require("./src/request");
 let Init = async function (url, token) {
 	this.url = url + "/rpc";
 	this.token = token;
+	this.expiredTokenCallback = function() {};
+
 	let self = this;
 
 	this.services = await request.fetch(this.url);
