@@ -39,7 +39,7 @@ request.prototype.call = async function (payload, token, clientInstance) {
 	}).then((json) => {
 		if (json.data && json.data.error_code === "401") {
 			clientInstance.setToken(json.data.validation_token);
-			clientInstance.expiredTokenCallback();
+			clientInstance.expiredTokenCallback(json);
 		}
 		return json;
 	}).catch((err) => {

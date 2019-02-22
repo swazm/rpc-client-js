@@ -1,6 +1,6 @@
 {
   "name": "@swazm/rpc-client-js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "description": "RPC Client only supports browsers/react-native. Node support planned for the future.",
   "license": "MIT",
