@@ -46,6 +46,10 @@ let Init = async function (url, token) {
 		return self.token;
 	};
 
+	client.isAccessExpiredError = function (json) {
+		return (json.error !== null && json.data && json.data.error_code === "401")
+	};
+
 	return client;
 };
 

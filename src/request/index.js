@@ -37,7 +37,7 @@ request.prototype.call = async function (payload, token, clientInstance) {
 	}).then((res) => {
 		return res.json()
 	}).then((json) => {
-		if (json.data && json.data.error_code === "401") {
+		if (clientInstance.isAccessExpiredError(json)) {
 			clientInstance.setToken(json.data.validation_token);
 			clientInstance.expiredTokenCallback(json);
 		}
