@@ -4,14 +4,25 @@ const RPCClient = {};
 
 RPCClient.url = "";
 RPCClient.token = "";
+RPCClient.tokenExpiredCallback = () => {};
 RPCClient.setURL = function (url) {
 	this.url = url;
 };
 
 RPCClient.install = function (Vue, options) {
 	let self = this;
+	self.client = {};
+	Vue.initClient = function () {
+
+	};
+
+	Vue.clientSetTokenExpiredCallback = function (callback) {
+		self.tokenExpiredCallback = callback;
+	};
+
 	Vue.prototype.$client = async function () {
 		let client = await RPC(self.url, self.token);
+		client.expiredTokenCallback = self.tokenExpiredCallback;
 		return client;
 	};
 	Vue.prototype.$setClientToken = function (token) {
