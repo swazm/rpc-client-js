@@ -26,9 +26,6 @@ RPCClient.install = function (Vue, options) {
 		let client = await RPC(self.url, self.token);
 		client.expiredTokenCallback = self.tokenExpiredCallback;
 		client.paymentRequiredCallback = self.paymentRequiredCallback;
-
-		console.log(client);
-
 		self.client = client;
 	};
 
