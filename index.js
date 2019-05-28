@@ -3,7 +3,10 @@ let request = require("./src/request");
 let Init = async function (url, token) {
 	this.url = url + "/rpc";
 	this.token = token;
-	this.expiredTokenCallback = function() {};
+	this.expiredTokenCallback = function () {
+	};
+	this.paymentRequiredCallback = function () {
+	};
 
 	let self = this;
 
@@ -11,7 +14,7 @@ let Init = async function (url, token) {
 
 	client = {};
 
-	this.services.map(function(service, index) {
+	this.services.map(function (service, index) {
 
 		let Service = new Object();
 
@@ -38,16 +41,24 @@ let Init = async function (url, token) {
 		client[service.Name] = Service;
 	});
 
-	client.setToken = function(token) {
+	client.setToken = function (token) {
 		self.token = token;
 	};
 
-	client.getToken = function() {
+	client.getToken = function () {
 		return self.token;
 	};
 
 	client.isAccessExpiredError = function (json) {
-		return (json.error !== null && json.data && json.data.error_code === "401")
+		return ((json.error !== null && json.data && json.data.error_code.toString() === "401") || (json.error_code.toString() === "401"))
+	};
+
+	client.isPaymentRequiredError = function (json) {
+		return ((json.error !== null && json.data && json.data.error_code.toString() === "402") || (json.error_code.toString() === "402"))
+	};
+
+	client.isCallbackHandledError = function (json) {
+		return (this.isAccessExpiredError(json) || this.isPaymentRequiredError(json))
 	};
 
 	return client;

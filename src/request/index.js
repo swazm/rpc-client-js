@@ -38,8 +38,17 @@ request.prototype.call = async function (payload, token, clientInstance) {
 		return res.json()
 	}).then((json) => {
 		if (clientInstance.isAccessExpiredError(json)) {
-			clientInstance.setToken(json.data.validation_token);
+			if ((json.data && json.data.validation_token !== "token-lifetime-expired") || json.validation_token !== "token-lifetime-expired") {
+				if (json.data) {
+					clientInstance.setToken(json.data.validation_token);
+				} else {
+					clientInstance.setToken(json.validation_token);
+				}
+			}
 			clientInstance.expiredTokenCallback(json);
+		}
+		if (clientInstance.isPaymentRequiredError(json)) {
+			clientInstance.paymentRequiredCallback(json);
 		}
 		return json;
 	}).catch((err) => {
