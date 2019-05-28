@@ -5,6 +5,7 @@ const RPCClient = {};
 RPCClient.url = "";
 RPCClient.token = "";
 RPCClient.tokenExpiredCallback = () => {};
+RPCClient.paymentRequiredCallback = () => {};
 RPCClient.setURL = function (url) {
 	this.url = url;
 };
@@ -17,9 +18,14 @@ RPCClient.install = function (Vue, options) {
 		self.tokenExpiredCallback = callback;
 	};
 
+	Vue.clientSetPaymentRequiredCallback = function (callback) {
+		self.paymentRequiredCallback = callback;
+	};
+
 	Vue.clientInit = async function () {
 		let client = await RPC(self.url, self.token);
 		client.expiredTokenCallback = self.tokenExpiredCallback;
+		client.paymentRequiredCallback = self.paymentRequiredCallback;
 		self.client = client;
 	};
 
