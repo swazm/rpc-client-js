@@ -50,11 +50,11 @@ let Init = async function (url, token) {
 	};
 
 	client.isAccessExpiredError = function (json) {
-		return ((json.error !== null && json.data && json.data.error_code.toString() === "401") || (json.error_code.toString() === "401"))
+		return ((json.error !== null && json.data && json.data.error_code &&json.data.error_code.toString() === "401") || (json.error_code && json.error_code.toString() === "401"))
 	};
 
 	client.isPaymentRequiredError = function (json) {
-		return ((json.error !== null && json.data && json.data.error_code.toString() === "402") || (json.error_code.toString() === "402"))
+		return ((json.error !== null && json.data && json.data.error_code && json.data.error_code.toString() === "402") || (json.error_code && json.error_code.toString() === "402"))
 	};
 
 	client.isCallbackHandledError = function (json) {
