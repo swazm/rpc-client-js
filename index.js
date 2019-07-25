@@ -7,6 +7,8 @@ let Init = async function (url, token) {
 	};
 	this.paymentRequiredCallback = function () {
 	};
+	this.networkErrorCallback = function () {
+	};
 
 	let self = this;
 
